@@ -1,31 +1,28 @@
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class CreateFile_Scanner {
+
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        Scanner scan = new java.util.Scanner(System.in);
-        String name="";
-        int id=0;
-        float balance;
-        System.out.println("Enter File Name : ");
-        String fileName = scan.next();
+        System.out.print("Enter file name: ");
+        String fileName = scanner.nextLine();
 
-        Scanner inFile;
+        System.out.print("Enter file content: ");
+        String fileContent = scanner.nextLine();
+
         try {
-            inFile = new Scanner(new File("file.txt"));
-       
-        while (inFile.hasNext()) {
-            name = inFile.next();
-            id = inFile.nextInt();
-            balance = inFile.nextFloat();
-            // … new Account(name, id, balance);
+            File file = new File(fileName);
+            FileWriter writer = new FileWriter(file);
+            writer.write(fileContent);
+            writer.close();
+            System.out.println("File created successfully.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while creating the file.");
+            e.printStackTrace();
         }
-    } catch (FileNotFoundException e) {
-    
-        e.printStackTrace();
-    }
-
     }
 }

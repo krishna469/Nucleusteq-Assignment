@@ -17,7 +17,8 @@ public class Read_Write {
             } else {
                 System.out.println("File already exists.");
             }
-            System.out.println("Enter your data here:");
+            System.out.println("Enter -1 to close the file: ");
+            System.out.println("Enter your data here: ");
             // Writing to the file
             FileWriter writer = new FileWriter(fileName);
             while (true) {

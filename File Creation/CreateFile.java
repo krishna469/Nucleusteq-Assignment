@@ -10,7 +10,7 @@ public class CreateFile {
         int count;
 
         try {
-            outputStream = new PrintWriter(new FileOutputStream("out.txt"));
+            outputStream = new PrintWriter(new FileOutputStream("out.txt",true));
             for (count = 1; count <= 3; count++) {
                 line = keyboard.nextLine();
                 outputStream.println(count + " " + line);

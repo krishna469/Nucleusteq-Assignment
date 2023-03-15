@@ -1,2 +1,3 @@
 krishna kumar,121,25,100000.0
 anil kumar,122,23,10000.0
+Raja Kumar,123,22,32000.0

@@ -17,6 +17,7 @@ public class EmployeeManagementSystem {
     
     static ArrayList<Employee> employees = new ArrayList<>();
     
+    static Scanner scanner=new Scanner(System.in);
     public static void main(String[] args) throws IOException {
         loadDataFromFile();
         Scanner scanner = new Scanner(System.in);
@@ -38,10 +39,10 @@ public class EmployeeManagementSystem {
                     viewAllEmployees();
                     break;
                 case 2:
-                    addNewEmployee(scanner);
+                    addNewEmployee();
                     break;
                 case 3:
-                    updateEmployee(scanner);
+                    updateEmployee();
                     break;
                 case 4:
                     deleteEmployee();
@@ -111,23 +112,25 @@ public class EmployeeManagementSystem {
         }
     }
     
-    static void addNewEmployee(Scanner scanner) {
+    static void addNewEmployee() {
+        int id;
+        System.out.println("Enter Employee Id :");
+        id=scanner.nextInt();
         System.out.print("Enter employee name: ");
-        String name = scanner.next();
+        String name = scanner.nextLine();
         
         System.out.print("Enter employee age: ");
         int age = scanner.nextInt();
         
         System.out.print("Enter employee salary: ");
         double salary = scanner.nextDouble();
-          int id;
-          id=scanner.nextInt();
+         
         Employee employee = new Employee(id, name, age, salary);
         employees.add(employee);
         System.out.println("Employee added successfully with ID " + id + ".");
     }
     
-    static void updateEmployee(Scanner scanner) {
+    static void updateEmployee() {
         System.out.print("Enter employee ID to update: ");
         int id = scanner.nextInt();
         boolean found = false;

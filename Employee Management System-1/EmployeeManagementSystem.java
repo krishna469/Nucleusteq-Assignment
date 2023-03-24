@@ -10,15 +10,17 @@ import java.util.Scanner;
 import java.util.Iterator;
 
 public class EmployeeManagementSystem {
+
     
     static final String FILE_PATH = "employees.txt";
+
     
     static ArrayList<Employee> employees = new ArrayList<>();
     
     public static void main(String[] args) throws IOException {
         loadDataFromFile();
-        boolean exit = false;
         Scanner scanner = new Scanner(System.in);
+        boolean exit = false;
         
         while (!exit) {
             System.out.println("Employee Management System");
@@ -118,8 +120,8 @@ public class EmployeeManagementSystem {
         
         System.out.print("Enter employee salary: ");
         double salary = scanner.nextDouble();
-        
-        int id = employees.isEmpty() ? 1 : employees.get(employees.size() - 1).getId() + 1;
+          int id;
+          id=scanner.nextInt();
         Employee employee = new Employee(id, name, age, salary);
         employees.add(employee);
         System.out.println("Employee added successfully with ID " + id + ".");
@@ -188,4 +190,4 @@ public class EmployeeManagementSystem {
         }
     }
 }
-
+//krishna kumar NITRR

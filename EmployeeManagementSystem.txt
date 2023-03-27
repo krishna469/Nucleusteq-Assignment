@@ -1,4 +1,3 @@
-package modules;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,9 +11,8 @@ import java.util.Iterator;
 
 public class EmployeeManagementSystem {
 
-     //System.out.println("Enter File Name : ");
-	static Employee em = new Employee();
-    static final String FILE_PATH = em.fname() +".txt";
+    
+    static final String FILE_PATH = "employees.txt";
 
     
     static ArrayList<Employee> employees = new ArrayList<>();
@@ -28,11 +26,10 @@ public class EmployeeManagementSystem {
         while (!exit) {
             System.out.println("Employee Management System");
             System.out.println("1. View All Employees");
-            System.out.println("2. Find Employee By ID");
-            System.out.println("3. Add New Employee");
-            System.out.println("4. Update Employee");
-            System.out.println("5. Delete Employee");
-            System.out.println("6. Exit");
+            System.out.println("2. Add New Employee");
+            System.out.println("3. Update Employee");
+            System.out.println("4. Delete Employee");
+            System.out.println("5. Exit");
             
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
@@ -42,18 +39,15 @@ public class EmployeeManagementSystem {
                     viewAllEmployees();
                     break;
                 case 2:
-                    findEmployeeById();
-                    break;
-                case 3:
                     addNewEmployee();
                     break;
-                case 4:
+                case 3:
                     updateEmployee();
                     break;
-                case 5:
+                case 4:
                     deleteEmployee();
                     break;
-                case 6:
+                case 5:
                     exit = true;
                     break;
                 default:
@@ -65,26 +59,7 @@ public class EmployeeManagementSystem {
         scanner.close();
     }
     
-    private static void findEmployeeById() {
-		System.out.println("Enter Employee Id to Search :");
-		int id=scanner.nextInt();
-		boolean flag=false;		 
-        for (Employee employee : employees) {
-            if (employee.getId() == id) {
-            	System.out.println("Employee Id :" +employee.getId());
-            	System.out.println("Employee Name :" +employee.getName());
-            	System.out.println("Employee Age :" +employee.getAge());
-            	System.out.println("Employee Salary:" +employee.getSalary());
-            	flag=true;
-            	System.out.println("_______________________________________________");
-            }
-        }
-        if(!flag)
-        	System.out.println("Record not found");
-		
-	}
-
-	static void loadDataFromFile() {
+    static void loadDataFromFile() {
         try {
             File file = new File(FILE_PATH);
             if (!file.exists()) {
@@ -141,20 +116,13 @@ public class EmployeeManagementSystem {
         int id;
         System.out.println("Enter Employee Id :");
         id=scanner.nextInt();
-        
-        if(checkDuplicateId(id)) {
-        	
-        	System.out.println("this is already exists");
-        	return;
-        }
-        scanner.nextLine();
-        System.out.println("Enter employee name: ");
+        System.out.print("Enter employee name: ");
         String name = scanner.nextLine();
         
-        System.out.println("Enter employee age: ");
+        System.out.print("Enter employee age: ");
         int age = scanner.nextInt();
         
-        System.out.println("Enter employee salary: ");
+        System.out.print("Enter employee salary: ");
         double salary = scanner.nextDouble();
          
         Employee employee = new Employee(id, name, age, salary);
@@ -162,18 +130,7 @@ public class EmployeeManagementSystem {
         System.out.println("Employee added successfully with ID " + id + ".");
     }
     
-    private static boolean checkDuplicateId(int id) {
-			 
-        for (Employee employee : employees) {
-            if (employee.getId() == id) {
-            	return true;
-            }
-        }
-    	
-		return false;
-	}
-
-	static void updateEmployee() {
+    static void updateEmployee() {
         System.out.print("Enter employee ID to update: ");
         int id = scanner.nextInt();
         boolean found = false;

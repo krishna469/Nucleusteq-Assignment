@@ -1,0 +1,23 @@
+package pack;
+
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class setImpl {
+	
+	public static void main(String[] args) {
+		Set<Integer> set= new HashSet<Integer>();
+		Scanner scan=new Scanner(System.in);
+		System.out.println("Enter the No. of element to store in the set :");
+		int num=scan.nextInt();
+		
+		System.out.println("Enter "+num+" elements :");
+		for(int i=0;i<num;i++) {
+			set.add(scan.nextInt());
+		}
+		
+		System.out.println("the unique Elements are :");
+		System.out.println(set);
+	}
+}

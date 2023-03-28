@@ -1,0 +1,11 @@
+package pack;
+
+public class MenuDrivenOpreations {
+
+	public static void main(String[] args) {
+		
+		System.out.println("1.Add element");
+
+	}
+
+}

@@ -1,0 +1,53 @@
+INSERT INTO public.nucleusteq(121,'krishna kumar','MCA','Prayagraj','P');
+
+select *from nucleusteq;
+
+INSERT INTO public.nucleusteq(
+	roll_no, name, course, city, attendence)
+	VALUES (125, 'Avinash kumar', 'MCA', 'Mokama', 'A');
+
+//using command line
+insert into nucleusteq values
+	(122,'vivek dubey','MCA','Gorekhpur','P'),
+	(123,'Arpita Sahu','MCA','Prayagraj','A'),
+	(124,'Diksha Mandal','MCA','Indore','P');
+
+INSERT INTO public.nucleusteq(
+	roll_no, name, course, city, attendence)
+	VALUES 
+	(126, 'Raja kumar', 'MCA', 'Madhubani', 'A'),
+	(127, 'Aditya singh', 'MCA', 'Lucknow', 'P'),
+	(128, 'Himanshu', 'MCA', 'Kanpur', 'P'),
+	(129, 'Shashikant virmani', 'MCA', 'unnao', 'A'),
+	(130, 'rahul utkar', 'MCA', 'banglore', 'A'),
+	(131, 'Anand kumar', 'MCA', 'Patna', 'A')
+	
+	;
+
+
+
+INSERT INTO public.nucleusteq(
+	roll_no, name, course, city, attendence)
+	VALUES 
+	(132, 'Saurabh Singh', 'MCA', 'kolkata', 'A'),
+	(133, 'Shubham Singh', 'MCA', 'Lucknow', 'A'),
+	(134, 'Subran Patel', 'MCA', 'kolkata', 'A'),
+	(135, 'Anushree Das', 'MCA', 'siligudi', 'A'),
+	(136, 'Nilay chatergy', 'MCA', 'kolkata', 'A')
+	
+	;
+	select *from nucleusteq;
+	
+	alter table nucleusteq add mob text [];
+	
+	
+	INSERT INTO public.nucleusteq(
+	roll_no, name, course, city, attendence,mob)
+	VALUES 
+	(138, 'Rishikesh Shrivastava', 'MCA', 'Indore', 'A',
+	ARRAY['7786886793','8090345677']
+	);
+ 
+	select *from nucleusteq;
+
+//NITRR KRISHNA KUMAR

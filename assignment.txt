@@ -1,0 +1,92 @@
+create table student(
+	
+	studentId NUMERIC(5) primary key,
+	studentName varchar(20)
+);
+
+
+create table teacher(
+	
+	teacherId NUMERIC(5) primary key,
+	teacherName varchar(20)
+);
+
+
+create table course(
+	
+	courseId NUMERIC(5) primary key,
+	courseName varchar(20),
+	teacherId numeric(5),
+	  CONSTRAINT Course_FK FOREIGN KEY (teacherID) REFERENCES teacher(teacherID)
+);
+
+	insert into student values(121,'krishna kumar');
+	
+	insert into student values
+		(122,'vivek dubey'),
+		(123,'arpita sahu'),
+		(124,'diksha mandal'),
+		(125,'rahul patidar'),
+		(126,'avinash kumar'),
+		(127,'aditya singh');
+	
+	select *from student;
+	
+	insert into teacher values
+	(221,'Dr. dibakar saha'),
+	(222,'Dr. H. Bikrol'),
+	(223,'Dr. Manju Panday'),
+	(224,'Dr. Nishant namdev'),
+	(225,'Dr. Shyam sundar');
+	
+	select *from teacher;
+
+	insert into course values
+	(721,'Math',224),
+	(722,'Operating System',222),
+	(723,'Cryptography',223),
+	(724,'Data Science',221),
+	(725,'Advance java',225),
+	(726,'AI And ML',221);
+
+
+-- Inner Join operation to get the name of the teacher for a course
+	--
+	SELECT * FROM Course
+	INNER JOIN Teacher ON course.TeacherID = teacher.TeacherID
+	WHERE course.CourseName = 'Cryptography';
+	
+	SELECT courseId,courseName,teacher.teacherId,teacherName FROM Course
+	INNER JOIN Teacher ON course.TeacherID = teacher.TeacherID
+	WHERE course.CourseName = 'Data Science';
+	
+--find the courses teach by perticular teacher	
+	select *from teacher inner join 
+	course on teacher.teacherId=course.teacherId
+	where teacher.teacherName='Dr. dibakar saha';
+
+--adding column in student table
+
+	alter table student add column courseId numeric(5),
+	add constraint fk_course foreign key (courseId) REFERENCES course(courseId);
+	
+	update student set courseId=721 where studentId=121;
+	update student set courseId=724 where studentId=122;
+	update student set courseId=723 where studentId=123;
+	update student set courseId=725 where studentId=124;
+	update student set courseId=726 where studentId=125;
+	update student set courseId=722 where studentId=126;
+	update student set courseId=721 where studentId=127;
+
+--finding the who teach a subject to a student
+	select *from student;
+	
+SELECT studentId,studentName,courseName,teacherName FROM student
+FULL OUTER JOIN course ON student.courseId = course.courseId
+FULL OUTER JOIN teacher ON course.teacherId = teacher.teacherId;
+
+
+
+
+
+

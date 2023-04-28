@@ -4,13 +4,14 @@ public class RegistrationDto {
 	
 	private int id = 1032;
 	private String userName;
+	private String gender;
 	private String role;
 	private String dept;
 	private String email;
 	private String password;
 	private String mobile;
 	
-	public RegistrationDto(int id, String userName, String role, String dept, String email, String password,
+	public RegistrationDto(int id, String userName,String gender, String role, String dept, String email, String password,
 			String mobile) {
 		super();
 		this.id = id;
@@ -77,12 +78,24 @@ public class RegistrationDto {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
+	
+	
 
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	
 	@Override
 	public String toString() {
-		return "RegistrationDto [id=" + id + ", userName=" + userName + ", role=" + role + ", dept=" + dept + ", email="
-				+ email + ", password=" + password + ", mobile=" + mobile + "]";
+		return "RegistrationDto [id=" + id + ", userName=" + userName + ", gender=" + gender + ", role=" + role
+				+ ", dept=" + dept + ", email=" + email + ", password=" + password + ", mobile=" + mobile + "]";
 	}
+
 	public RegistrationDto() {
 		super();
 	}

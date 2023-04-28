@@ -54,17 +54,23 @@ public class TicketImpl implements TicketService {
 	 
 	    @Override
 	    public Tickets updateTicket(int id, TicketDto updatedticketDto) {
-	        Tickets ticket = ticketRepository.findByTicketId(id);
-//	                .orElseThrow(() -> new ResourceNotFoundException("Ticket not found with id " + id));
 
-
+	    	
+	    	Tickets ticket = ticketRepository.findByTicketId(id);
+	        if (updatedticketDto.getCategory() != null) {
+	            ticket.setCategory(updatedticketDto.getCategory());
+	        }
 	        ticket.setStatus(updatedticketDto.getStatus());
 	        ticket.setPriority(updatedticketDto.getPriority());
-	        ticket.setCategory(updatedticketDto.getCategory());
 	        ticket.setReplay(updatedticketDto.getReplay());
 	        ticket.setDescription(updatedticketDto.getDescription());
-	        ticket.setEndDate(updatedticketDto.getEndDate());
+	        ticket.setEndDate(LocalDateTime.now());
 	        return ticketRepository.save(ticket);
+	    	
+	    	
+	    	//	        Tickets ticket = ticketRepository.findByTicketId(id);
+////	                .orElseThrow(() -> new ResourceNotFoundException("Ticket not found with id " + id));
+
 	    }
 	    
 	    @Override

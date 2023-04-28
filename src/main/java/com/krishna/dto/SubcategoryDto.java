@@ -58,3 +58,55 @@ public class SubcategoryDto {
 	
 
 }
+
+
+
+
+
+
+
+//package com.krishna.dto;
+//
+//import jakarta.validation.constraints.NotBlank;
+//
+//public class SubcategoryDto {
+//
+//	private int id;
+//	
+//	@NotBlank
+//	private String name;
+//
+//	public SubcategoryDto(int id, @NotBlank String name) {
+//		super();
+//		this.id = id;
+//		this.name = name;
+//	}
+//
+//	public SubcategoryDto() {
+//		super();
+//	}
+//
+//	public int getId() {
+//		return id;
+//	}
+//
+//	public void setId(int id) {
+//		this.id = id;
+//	}
+//
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
+//
+//	@Override
+//	public String toString() {
+//		return "SubcategoryDto [id=" + id + ", name=" + name + "]";
+//	}
+//	
+//	
+//
+//}

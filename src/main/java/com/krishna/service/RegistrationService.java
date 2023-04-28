@@ -6,6 +6,7 @@ import com.krishna.entity.Tickets;
 import com.krishna.exception.DuplicateEmailException;
 import com.krishna.exception.DuplicateMobileNumberException;
 import com.krishna.exception.UserEmailDomainException;
+import com.krishna.exception.UserNotFoundException;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
@@ -22,12 +23,12 @@ public interface RegistrationService {
 
 	LoginResponse loginUser(LoginDto loginDto);
 
-	Registration updateUser(int id, RegistrationDto userDto);
+	String updateUser(int id, RegistrationDto userDto) throws UserNotFoundException;
 
 //	Registration getUserById(int id);
 	List<Registration> getAllUsers();
 	
-	Registration findById(int id);
+	Registration findById(int id) throws UserNotFoundException;
 	
 	void deleteUserById(int id);
 }

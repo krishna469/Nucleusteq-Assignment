@@ -18,10 +18,12 @@ public interface CategoryService {
 	
 
 	SubcategoryDto createSubcategory(SubcategoryDto subcategoryDto);
+	
 
 	List<Category> getAllCategories();
 
 	CategoryDto getCategoryById(int id);
+	
 
 	void deleteSubcategory(int subcategoryId);
 
@@ -30,6 +32,8 @@ public interface CategoryService {
 	SubcategoryDto getSubcategoriesById(int id);
 
 	SubcategoryDto updateSubcategory(int subCategoryId, SubcategoryDto subcategoryDto);
+
+	
 
 	
 }

@@ -1,21 +1,19 @@
 package com.krishna.service.impl;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.krishna.dto.LoginDto;
 import com.krishna.dto.RegistrationDto;
 import com.krishna.entity.Registration;
-import com.krishna.entity.Tickets;
 import com.krishna.exception.DuplicateEmailException;
 import com.krishna.exception.DuplicateMobileNumberException;
 import com.krishna.exception.UserEmailDomainException;
+import com.krishna.exception.UserNotFoundException;
 import com.krishna.repo.RegistrationRepo;
 import com.krishna.response.LoginResponse;
 import com.krishna.service.RegistrationService;
@@ -30,45 +28,47 @@ public class RegistrationImpl implements RegistrationService {
 	private PasswordEncoder passwordEncoder;
 
 	@Override
-	public String addUser(RegistrationDto registrationDto)
-			throws DuplicateMobileNumberException, DuplicateEmailException,SQLIntegrityConstraintViolationException, UserEmailDomainException {
-
-
+	public String addUser(RegistrationDto registrationDto) throws DuplicateMobileNumberException, DuplicateEmailException, UserEmailDomainException {
 
 		final String EMAIL_DOMAIN = "costacloud.com";
 
 		 if (!registrationDto.getEmail().endsWith("@" + EMAIL_DOMAIN)) {
 	            throw new UserEmailDomainException("Email domain should be " + EMAIL_DOMAIN);
-	        }
+	     }
 		
-		Registration registration = new Registration(
+		 Optional<Registration> existingUserByMobile = registrationRepo.findByMobile(registrationDto.getMobile());
+		 if (existingUserByMobile.isPresent()) {
+			 throw new DuplicateMobileNumberException("Mobile number already exists");
+		 }
+		 
+		 Optional<Registration> existingUserByEmail = registrationRepo.findByEmail(registrationDto.getEmail());
+		 if (existingUserByEmail.isPresent()) {
+			 throw new DuplicateEmailException("Email address already exists");
+		 }
+		   
+	        
+		 Registration registration = new Registration(
 
-				registrationDto.getUserName(), registrationDto.getRole(), registrationDto.getDept(),
-				registrationDto.getEmail(), this.passwordEncoder.encode(registrationDto.getPassword()),
-				registrationDto.getMobile()
-
+			registrationDto.getUserName(),registrationDto.getGender(), registrationDto.getRole(), registrationDto.getDept(),
+			registrationDto.getEmail(), this.passwordEncoder.encode(registrationDto.getPassword()),
+			registrationDto.getMobile()
 		);
-
-		
 
 		try {
 			registrationRepo.save(registration);
 			
-		}catch (DataIntegrityViolationException e) {
-			if (e.getMessage().contains("mobile")) {
-				throw new DuplicateMobileNumberException("Username already exists");
-			} else if (e.getMessage().contains("email")) {
-				throw new DuplicateEmailException("Email already exists");
-			} else {
-				e.printStackTrace();
-				throw e;
-			}
-		}
-		
-		
-		
-		return registration.getUserName();
+		}catch (Exception e) {
+			
+			throw e;
+			
+		}		
+		return registration.getUserName()+" Registered Successfully";
 	}
+	
+	
+	
+	
+	
 
 	@Override
 	public LoginResponse loginUser(LoginDto loginDto) {
@@ -114,24 +114,36 @@ public class RegistrationImpl implements RegistrationService {
 	
 	
 	
+
+
 	 @Override
-	    public Registration updateUser(int id, RegistrationDto registrationDto) {
-		 Registration user = registrationRepo.findById(id);
-//				  Tickets ticket = ticketRepository.findByTicketId(id);
-//	                .orElseThrow(() -> new UserNotFoundException(id));
-	        user.setUserName(registrationDto.getUserName());
-	        user.setEmail(registrationDto.getEmail());
-	        user.setPassword( this.passwordEncoder.encode(registrationDto.getPassword()));
-	        return registrationRepo.save(user);
-	    }
+	 public String updateUser(int id, RegistrationDto registrationDto) throws UserNotFoundException {
+	     Optional<Registration> optionalUser = registrationRepo.findById(id);
+	     if (optionalUser.isPresent()) {
+	         Registration user = optionalUser.get();
+	         user.setUserName(registrationDto.getUserName());
+	         user.setEmail(registrationDto.getEmail());
+	         user.setPassword(this.passwordEncoder.encode(registrationDto.getPassword()));
+	         registrationRepo.save(user);
+	         return registrationDto.getUserName()+" Updated successfully";
+	     } else {
+	         throw new UserNotFoundException("User not found with id " + id);
+	     }
+	 }
+
+	 	 
+	 @Override
+	 public Registration findById(int id) throws UserNotFoundException {
+	     Optional<Registration> userOptional = registrationRepo.findById(id);
+	     if (userOptional.isPresent()) {
+	         return userOptional.get();
+	     } else {
+	         throw new UserNotFoundException("User with id " + id + " not found");
+	     }
+	 }
 
 	 
-	 @Override
-	    public Registration findById(int id) {
-	        return registrationRepo.findById(id);
-//	                .orElseThrow(() -> new UserNotFoundException(id));
-	    }
-
+	 
 	
 	 @Override
 		public List<Registration> getAllUsers() {

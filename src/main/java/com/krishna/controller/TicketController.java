@@ -65,7 +65,8 @@ public class TicketController {
         List<Tickets> allTickets = ticketService.getAllTickets();
         List<Tickets> filteredTickets = new ArrayList<>();
         for (Tickets ticket : allTickets) {
-            if (ticket.getStatus().equals(status)) {
+        	System.out.println("===="+ticket.getStatus());
+            if (ticket.getStatus() != null && ticket.getStatus().equalsIgnoreCase(status)) {
             	filteredTickets.add(ticket);
             }
         }

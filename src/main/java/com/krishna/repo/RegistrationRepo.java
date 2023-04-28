@@ -20,8 +20,13 @@ public interface RegistrationRepo extends JpaRepository<Registration, Integer> {
 
 	Optional<Registration> findByEmail(String email);
 	
-	Registration findById(int id);
+	Optional<Registration> findByMobile(String mobile);
+
+	Optional<Registration> findById(int id);
 	public List<Registration> findAll();
 	void deleteById(int id);
+
+
+//	Registration findByMobileNumber(String mobile);
 
 }

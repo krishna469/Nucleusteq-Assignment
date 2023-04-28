@@ -1,7 +1,6 @@
 package com.krishna.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -65,3 +64,72 @@ public class Subcategory {
 	
 	
 }
+
+
+
+
+
+
+
+
+
+//package com.krishna.entity;
+//
+//import jakarta.persistence.Entity;
+//import jakarta.persistence.GeneratedValue;
+//import jakarta.persistence.GenerationType;
+//import jakarta.persistence.Id;
+//import jakarta.persistence.ManyToOne;
+//import jakarta.persistence.SequenceGenerator;
+//import jakarta.persistence.Table;
+//import jakarta.validation.constraints.NotNull;
+//
+//@Entity
+//@Table(name = "subcategories")
+//@SequenceGenerator(name = "sub_category_seq", initialValue = 4010, allocationSize = 1)
+//public class Subcategory {
+//	
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sub_category_seq")
+//	private int id;
+//	
+//	@NotNull
+//	private String name;
+//	
+//	
+//
+//	public Subcategory(int id, @NotNull String name) {
+//		super();
+//		this.id = id;
+//		this.name = name;
+//	}
+//
+//	public Subcategory() {
+//		super();
+//	}
+//
+//	public int getId() {
+//		return id;
+//	}
+//
+//	public void setId(int id) {
+//		this.id = id;
+//	}
+//
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
+//
+//	@Override
+//	public String toString() {
+//		return "Subcategory [id=" + id + ", name=" + name + "]";
+//	}
+//
+//		
+//	
+//	
+//}

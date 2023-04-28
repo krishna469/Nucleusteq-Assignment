@@ -21,6 +21,9 @@ public class Registration {
 	private String userName;
 	
 	@Column(nullable = false)
+	private String gender;
+	
+	@Column(nullable = false)
 	private String role;
 	
 	@Column(nullable = false)
@@ -39,10 +42,11 @@ public class Registration {
 	private String mobile;
 	
 	
-	public Registration( String userName, String role, String dept, String email, String password,
+	public Registration( String userName,String gender, String role, String dept, String email, String password,
 			String mobile) {
 		super();
 		this.userName = userName;
+		this.gender=gender;
 		this.role = role;
 		this.dept = dept;
 		this.email = email;
@@ -130,6 +134,16 @@ public class Registration {
 	public String toString() {
 		return "Rgistration [id=" + id + ", userName=" + userName + ", role=" + role + ", dept=" + dept + ", email="
 				+ email + ", password=" + password + ", mobile=" + mobile + "]";
+	}
+
+
+	public String getGender() {
+		return gender;
+	}
+
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 	
